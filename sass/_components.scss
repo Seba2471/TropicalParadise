@@ -7,13 +7,12 @@
 
 .white-block {
   position: absolute;
-  height: 41px;
+  height: 40px;
   width: 60%;
   background-color: colors.$pure-white;
 
   &-left {
     bottom: 0;
-    margin-bottom: -1px;
     left: -50px;
     transform: skew(45deg);
   }
