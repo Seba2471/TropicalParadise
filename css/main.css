@@ -6,12 +6,13 @@
 
 .white-block {
   position: absolute;
-  height: 40px;
+  height: 41px;
   width: 60%;
   background-color: #fff;
 }
 .white-block-left {
   bottom: 0;
+  margin-bottom: -1px;
   left: -50px;
   transform: skew(45deg);
 }
@@ -45,6 +46,37 @@
   transform-origin: left;
 }
 
+.section-heading {
+  position: relative;
+  margin-bottom: 2em;
+  font-size: 3rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  color: #1755e7;
+  letter-spacing: 2px;
+}
+
+.section-padding {
+  padding: 6em 2em;
+}
+
+@media (min-width: 768px) {
+  .section-heading {
+    font-size: 3.6rem;
+  }
+  .section-padding {
+    padding: 8em 2em;
+  }
+}
+@media (min-width: 992px) {
+  .section-heading {
+    font-size: 4.8rem;
+  }
+  .section-padding {
+    padding: 10em 2em;
+  }
+}
 *,
 *::before,
 *::after {
@@ -63,7 +95,47 @@ body {
   font-size: 1.6rem;
 }
 
-.burger-btn {
+.nav__wrapper {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  transform: translateX(100%);
+  background-image: linear-gradient(45deg, rgb(20, 105, 241), rgb(42, 10, 184));
+  z-index: 100;
+  transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+.nav--active {
+  transform: translateX(0);
+}
+.nav__item {
+  position: relative;
+  display: block;
+  margin: 0.5em 0;
+  padding: 0.5em 2em;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+}
+.nav__item::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  transform: scaleY(0);
+  background-color: #fff;
+  content: "";
+  transition: transform 0.3s;
+}
+.nav__item:hover::before {
+  transform: scaleY(1);
+}
+.nav .burger-btn {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -73,21 +145,21 @@ body {
   cursor: pointer;
   z-index: 1000;
 }
-.burger-btn:focus {
+.nav .burger-btn:focus {
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 8px;
 }
-.burger-btn:hover .burger-btn__bars::after,
-.burger-btn:hover .burger-btn__bars::before {
+.nav .burger-btn:hover .burger-btn__bars::after,
+.nav .burger-btn:hover .burger-btn__bars::before {
   width: 100%;
 }
-.burger-btn__box {
+.nav .burger-btn__box {
   position: relative;
   width: 40px;
   height: 30px;
 }
-.burger-btn__bars, .burger-btn__bars::after, .burger-btn__bars::before {
+.nav .burger-btn__bars, .nav .burger-btn__bars::after, .nav .burger-btn__bars::before {
   position: absolute;
   right: 0;
   height: 3px;
@@ -95,17 +167,29 @@ body {
   background-color: #eee;
   transition: width 0.3s;
 }
-.burger-btn__bars {
+.nav .burger-btn__bars {
   width: 100%;
 }
-.burger-btn__bars::after {
+.nav .burger-btn__bars::after {
   top: 13px;
   width: 60%;
 }
-.burger-btn__bars::before {
+.nav .burger-btn__bars::before {
   top: 27px;
   width: 30%;
   transition-delay: 0.1s;
+}
+
+@keyframes navItemsAnimation {
+  from {
+    transform: translateX(200%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.nav-items-animation {
+  animation: navItemsAnimation 1s both;
 }
 
 .header {
@@ -148,6 +232,44 @@ body {
   background-color: #eee;
 }
 
+.dreams__box {
+  display: flex;
+  flex-direction: column;
+  margin: 2em 0;
+}
+.dreams__img {
+  width: 100%;
+  margin-bottom: 1em;
+}
+.dreams__title {
+  margin-bottom: 0.5em;
+}
+.dreams__text {
+  font-style: 1.4rem;
+}
+
+@media (min-width: 576px) {
+  .dreams__box {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .dreams__box-text {
+    width: 55%;
+  }
+  .dreams__box-text--right {
+    text-align: right;
+  }
+  .dreams__box-img {
+    width: 40%;
+  }
+  .dreams__box-img--right {
+    order: 1;
+  }
+  .dreams__img {
+    margin-bottom: 0;
+    max-height: 300px;
+  }
+}
 @media (min-width: 768px) {
   .white-block {
     height: 50px;
@@ -162,6 +284,9 @@ body {
   .header__btn {
     font-size: 1.6rem;
   }
+  .dreams__text {
+    font-size: 1.8rem;
+  }
 }
 @media (min-width: 992px) {
   .burger-btn {
@@ -173,5 +298,23 @@ body {
   }
   .header__heading {
     font-size: 10rem;
+  }
+  .nav__item {
+    font-size: 3.5rem;
+  }
+  .dreams__box {
+    margin: 5em 0;
+  }
+  .dreams__box-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 2.5em;
+  }
+  .dreams__title {
+    font-size: 3.4rem;
+  }
+  .dreams__text {
+    font-size: 2rem;
   }
 }/*# sourceMappingURL=main.css.map */
